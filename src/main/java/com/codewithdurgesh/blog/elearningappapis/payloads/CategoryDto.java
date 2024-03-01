@@ -10,7 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryDto {
-    private Integer Id;
-    private Integer subId;
-    private String subjectname;
+    private Integer categoryId;
+    private String courseCategory;
 }

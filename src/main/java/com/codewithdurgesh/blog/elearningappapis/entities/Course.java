@@ -36,7 +36,7 @@ public class Course {
     private Set<Language> languages = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "course", orphanRemoval = true)
-    private Set<Category> categories = new LinkedHashSet<>();
+    private Set<CourseCategory> categories = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "course", orphanRemoval = true)
     private Set<Video> videos = new LinkedHashSet<>();

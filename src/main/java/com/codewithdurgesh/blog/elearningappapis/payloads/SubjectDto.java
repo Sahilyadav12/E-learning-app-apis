@@ -11,5 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SubjectDto {
     private Integer subId;
-    private Integer couId;
+    private String subName;
+
 }

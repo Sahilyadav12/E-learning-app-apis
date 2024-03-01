@@ -1,8 +1,10 @@
 package com.codewithdurgesh.blog.elearningappapis.services;
 
 import com.codewithdurgesh.blog.elearningappapis.entities.Students;
+import com.codewithdurgesh.blog.elearningappapis.entities.Teacher;
 import com.codewithdurgesh.blog.elearningappapis.payloads.StudentsDto;
 import com.codewithdurgesh.blog.elearningappapis.exceptions.ResourceNotFoundException;
+import com.codewithdurgesh.blog.elearningappapis.payloads.TeacherDto;
 import com.codewithdurgesh.blog.elearningappapis.repositories.StudentsRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -22,22 +24,21 @@ public class StudentsServiceImpl  implements StudentsService{
     //crate
     @Override
     public StudentsDto created(StudentsDto studentsDto){
-        Students students =new Students();
-        students.setId(students.getId());
-        students.setName(students.getName());
-        students.setPassword(students.getPassword());
-        students.setEmail(students.getEmail());
-        students.setDoB(students.getDoB());
-        students.setReg(students.getReg());
-        students.setProfilepicture(students.getProfilepicture());
-        students.setMobile(students.getMobile());
-        Students save = studentsRepo.save(students);
-        return mapToCls(save, StudentsDto.class);
+       var std= modelMapper.map(studentsDto, Students.class);
+       std.setId(null);
+        return modelMapper.map(studentsRepo.save(std), StudentsDto.class);
     }
 
     @Override
     public StudentsDto update(StudentsDto studentsDto, Integer studentsId) {
-        return null;
+        Students students=this.studentsRepo.findById(studentsId).
+                orElseThrow(()-> new ResourceNotFoundException("Students", "students",studentsId));
+
+        var update=modelMapper.map(studentsDto, Students.class);
+        update.setId(studentsId);
+        return modelMapper.map(studentsRepo.save(update), StudentsDto.class);
+
+
     }
 
     //delete

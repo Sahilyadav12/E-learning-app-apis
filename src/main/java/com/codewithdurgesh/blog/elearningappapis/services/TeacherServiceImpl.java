@@ -47,7 +47,7 @@ public class TeacherServiceImpl implements TeacherService {
     public TeacherDto update(TeacherDto teacherDto, Integer teacherId){
         Teacher teacher=this.teacherRepo.findById(teacherId).
                 orElseThrow(()-> new ResourceNotFoundException("Teacher", "teacher",teacherId));
-        teacher.setTeacherId(teacherDto.getTeacherId());
+        teacher.setTeacherId(teacherId);
         teacher.setFirstName(teacherDto.getFirstName());
         teacher.setLastName(teacherDto.getLastName());
         teacher.setEmail(teacherDto.getEmail());

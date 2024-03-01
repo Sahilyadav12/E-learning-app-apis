@@ -25,8 +25,7 @@ public class SubjectServiceImpl implements SubjectService{
     @Override
     public SubjectDto created(SubjectDto subjectDto){
         Subject subject=new Subject();
-        subject.setCouId(subject.getCouId());
-        subject.setSubId(subject.getCouId());
+        subject.setSubName(subjectDto.getSubName());
         Subject save=subjectRepo.save(subject);
         return mapToCls(save, SubjectDto.class);
     }
@@ -46,7 +45,6 @@ public class SubjectServiceImpl implements SubjectService{
         Subject subject = this.subjectRepo.findById(subjectId).orElseThrow(()-> new ResourceNotFoundException("subject", "Id", subjectId));
         return mapToCls(subject,SubjectDto.class);
     }
-    //getall user
 
     public List<SubjectDto> getallSubject(){
         List<Subject> subject = this.subjectRepo.findAll();

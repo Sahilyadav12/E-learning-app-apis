@@ -1,6 +1,6 @@
 package com.codewithdurgesh.blog.elearningappapis.services;
 
-import com.codewithdurgesh.blog.elearningappapis.entities.Category;
+import com.codewithdurgesh.blog.elearningappapis.entities.CourseCategory;
 import com.codewithdurgesh.blog.elearningappapis.payloads.CategoryDto;
 import com.codewithdurgesh.blog.elearningappapis.exceptions.ResourceNotFoundException;
 import com.codewithdurgesh.blog.elearningappapis.repositories.CategoryRepo;
@@ -21,11 +21,9 @@ public class CategoryServiceImpl implements CategoryService {
     }
     @Override
     public CategoryDto created(CategoryDto categoryDto){
-        Category category = new Category();
-        category.setId(category.getId());
-        category.setSubId(category.getSubId());
-        category.setSubjectname(category.getSubjectname());
-        Category save = categoryRepo.save(category);
+        CourseCategory category = new CourseCategory();
+        category.setCourseCategory(category.getCourseCategory());
+        CourseCategory save = categoryRepo.save(category);
         return mapToCls(save, CategoryDto.class);
     }
     @Override
@@ -35,22 +33,21 @@ public class CategoryServiceImpl implements CategoryService {
     //delete
     @Override
     public void delete(Integer categoryId){
-        Category category=this.categoryRepo.findById(categoryId)
+        CourseCategory category=this.categoryRepo.findById(categoryId)
                 .orElseThrow(()->new ResourceNotFoundException("Category", "Id",categoryId));
         this.categoryRepo.delete(category);
     }
     //getTeacherById
     @Override
     public CategoryDto getCategoryById(Integer categoryId){
-        Category category =this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("category", "Id", categoryId));
+        CourseCategory category =this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("category", "Id", categoryId));
         return mapToCls(category,CategoryDto.class);
     }
     //getall user
 
     public List<CategoryDto> getallCategory(){
-        List<Category> categories = this.categoryRepo.findAll();
-        List<CategoryDto>categoryDtos = categories.stream().map(category -> mapToCls(category,CategoryDto.class)).collect(Collectors.toList());
-        return categoryDtos;
+        List<CourseCategory> categories = this.categoryRepo.findAll();
+        return categories.stream().map(category -> mapToCls(category,CategoryDto.class)).collect(Collectors.toList());
     }
 
 

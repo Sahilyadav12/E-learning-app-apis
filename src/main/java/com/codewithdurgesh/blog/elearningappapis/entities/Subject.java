@@ -16,7 +16,7 @@ public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer subId;
-    private Integer couId;
+    private String subName;
 
     @ManyToOne
     @JoinColumn(name = "course_id")

@@ -11,12 +11,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
+public class CourseCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer Id;
-    private Integer subId;
-    private String subjectname;
+    private Integer categoryId;
+    private String courseCategory;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
