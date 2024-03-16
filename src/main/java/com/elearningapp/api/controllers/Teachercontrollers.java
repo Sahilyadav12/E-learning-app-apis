@@ -22,7 +22,7 @@ public class Teachercontrollers {
     //post-create teacher
     @PostMapping()
     public ResponseEntity<TeacherDto> create(@Valid @RequestBody TeacherDto teacherDto){
-        TeacherDto createDto = this.teacherService.crate(teacherDto);
+        TeacherDto createDto = this.teacherService.create(teacherDto);
         return new ResponseEntity<>(createDto, HttpStatus.CREATED);
     }
     //PUT-UPDATE

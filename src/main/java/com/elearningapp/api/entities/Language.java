@@ -1,24 +1,22 @@
 package com.elearningapp.api.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Language {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer Id;
-    private String languagename;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer languageId;
+    private String language;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
+
+
+
 
 }

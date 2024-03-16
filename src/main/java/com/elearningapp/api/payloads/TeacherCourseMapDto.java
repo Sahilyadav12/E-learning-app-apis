@@ -1,6 +1,8 @@
 
 package com.elearningapp.api.payloads;
 
+import com.elearningapp.api.entities.Course;
+import com.elearningapp.api.entities.Teacher;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
@@ -13,8 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TeacherCourseMapDto {
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long TCID;
-    private Long teacher;
-    private Long course;
+    private Long Id;
+    private Teacher teacher;
+    private Course course;
 }

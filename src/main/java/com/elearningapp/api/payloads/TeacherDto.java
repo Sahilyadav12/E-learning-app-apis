@@ -1,5 +1,6 @@
 package com.elearningapp.api.payloads;
 
+import com.elearningapp.api.entities.Language;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
 
@@ -25,13 +27,13 @@ public class TeacherDto {
     private String lastName;
     private String email;
     private Integer password;
-    private Boolean block;
+    private Boolean isBlock;
     private Date dob;
     private String language;
+    private Integer languageId;
     private String qualification;
     private Date doj;
     private Integer experience;
     private String role;
     private String profilePicture;
-
 }

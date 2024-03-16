@@ -6,8 +6,10 @@ import com.elearningapp.api.payloads.TeacherDto;
 import com.elearningapp.api.exceptions.ResourceNotFoundException;
 import com.elearningapp.api.repositories.TeacherRepo;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.FileStore;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,16 +20,29 @@ public class TeacherServiceImpl implements TeacherService {
 
     private final ModelMapper modelMapper;
 
-    public TeacherServiceImpl(TeacherRepo teacherRepo, ModelMapper modelMapper) {
+    private  StorageService storageService;
+
+    @Value("${project.storage}")
+    private String path;
+
+
+
+    public TeacherServiceImpl(TeacherRepo teacherRepo, ModelMapper modelMapper, StorageService storageService) {
         this.teacherRepo = teacherRepo;
         this.modelMapper = modelMapper;
+        this.storageService = storageService;
     }
 
     //create
     @Override
-    public TeacherDto crate(TeacherDto teacherDto){
+    public TeacherDto create(TeacherDto teacherDto){
         Teacher save = modelMapper.map(teacherDto, Teacher.class);
         save.setTeacherId(null);
+        String fileName="default.png";
+        if(!teacherDto.getProfilePicture().isEmpty()){
+            fileName = storageService.uploadBase64File(path, teacherDto.getProfilePicture());
+        }
+        save.setProfilePicture(fileName);
         return modelMapper.map(teacherRepo.save(save), TeacherDto.class);
     }
     //update

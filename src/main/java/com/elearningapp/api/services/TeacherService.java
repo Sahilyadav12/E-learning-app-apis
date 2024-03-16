@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TeacherService{
     //create
-    TeacherDto crate(TeacherDto teacherDto);
+    TeacherDto create(TeacherDto teacherDto);
     //update
     TeacherDto update(TeacherDto teacherDto, Integer TeacherId);
     //delete

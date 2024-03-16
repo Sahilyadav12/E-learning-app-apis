@@ -21,10 +21,9 @@ public class LanguageServiceImpl implements LanguageService{
     }
     @Override
     public LanguageDto created(LanguageDto languageDto){
-        Language language = new Language();
-       language.setId(language.getId());
-        language.setLanguagename(language.getLanguagename());
-        Language save = languageRepo.save(language);
+        Language save = modelMapper.map(languageDto, Language.class);
+        save.setLanguageId(null);
+
         return mapToCls(save, LanguageDto.class);
     }
     @Override

@@ -11,4 +11,6 @@ public interface StorageService {
     public InputStream downloadFile(String path, String fileName);
     public String uploadFile(String path,MultipartFile file) ;
 
+    public String uploadBase64File(String path,String base64Data);
+
     }

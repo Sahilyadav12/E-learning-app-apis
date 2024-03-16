@@ -1,26 +1,22 @@
 package com.elearningapp.api.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class TeacherCourseMap {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long TCID;
-
+    private Integer Id;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-
 
     @ManyToOne
     @JoinColumn(name = "course_id")

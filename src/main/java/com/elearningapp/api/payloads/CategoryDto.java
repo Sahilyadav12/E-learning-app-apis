@@ -11,5 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CategoryDto {
     private Integer categoryId;
-    private String courseCategory;
+    private String Category;
+
 }

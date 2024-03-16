@@ -10,12 +10,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VideoDto {
-    private Integer cvId;
-    private String url;
-    private String material;
-    private String image;
-    private Integer courseId;
-    private Integer lessonno;
+    private Integer videoId;
+    private String  url;
+    private String thumbnail;
+    private String title;
+    private Boolean isBlock;
+
 
 
 }

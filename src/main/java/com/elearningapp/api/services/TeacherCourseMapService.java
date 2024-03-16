@@ -5,7 +5,6 @@ import com.elearningapp.api.payloads.TeacherCourseMapDto;
 import java.util.List;
 
 public interface TeacherCourseMapService {
-    TeacherCourseMapDto craeted(TeacherCourseMapDto teacherCourseMapDto);
 
     //created
     TeacherCourseMapDto created(TeacherCourseMapDto teacherCourseMapDto);

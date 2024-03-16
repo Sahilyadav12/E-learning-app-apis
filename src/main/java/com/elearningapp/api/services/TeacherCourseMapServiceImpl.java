@@ -19,15 +19,6 @@ public class TeacherCourseMapServiceImpl implements TeacherCourseMapService{
         this. teacherCourseMapRepo =  teacherCourseMapRepo;
         this.modelMapper = modelMapper;
     }
-    @Override
-    public TeacherCourseMapDto craeted(TeacherCourseMapDto teacherCourseMapDto){
-        TeacherCourseMap teacherCourseMap = new TeacherCourseMap();
-        teacherCourseMap.setCourse(teacherCourseMap.getCourse());
-        teacherCourseMap.setTCID(teacherCourseMap.getTCID());
-        teacherCourseMap.setTeacher(teacherCourseMap.getTeacher());
-        TeacherCourseMap save = teacherCourseMapRepo.save(teacherCourseMap);
-        return mapToCls(save, TeacherCourseMapDto.class);
-    }
 
     @Override
     public TeacherCourseMapDto created(TeacherCourseMapDto teacherCourseMapDto) {
@@ -44,28 +35,20 @@ public class TeacherCourseMapServiceImpl implements TeacherCourseMapService{
 
     }
 
-    //delete
     @Override
-    public void delete(Integer teacherCourseMapId){
-        TeacherCourseMap teacherCourseMap=this.teacherCourseMapRepo.findById(teacherCourseMapId)
-                .orElseThrow(()->new ResourceNotFoundException("teacherCourseMap", "Id",teacherCourseMapId));
-        this.teacherCourseMapRepo.delete(teacherCourseMap);
-    }
-    //getTeacherById
-    @Override
-    public TeacherCourseMapDto getTeacherCourseMapById(Integer teacherCourseMapId){
-        TeacherCourseMap teacherCourseMap1  = this.teacherCourseMapRepo.findById(teacherCourseMapId)
-                .orElseThrow(()-> new ResourceNotFoundException("teacherCourseMap", "Id", teacherCourseMapId));
-        return mapToCls(teacherCourseMap1,TeacherCourseMapDto.class);
-    }
-    //getall user
+    public void delete(Integer teacherCourseMapId) {
 
-    public List<TeacherCourseMapDto> getallTeacherCourseMap(){
-        List<TeacherCourseMap> teacherCourseMaps = this.teacherCourseMapRepo.findAll();
-        List<TeacherCourseMapDto>teacherCourseMapDtos = teacherCourseMaps.stream().map(teacherCourseMap -> mapToCls(teacherCourseMap,TeacherCourseMapDto.class)).collect(Collectors.toList());
-        return teacherCourseMapDtos;
     }
 
+    @Override
+    public TeacherCourseMapDto getTeacherCourseMapById(Integer teacherCourseMapId) {
+        return null;
+    }
+
+    @Override
+    public List<TeacherCourseMapDto> getallTeacherCourseMap() {
+        return null;
+    }
 
     private <T,C> C mapToCls(T t, Class<C> c){
         return modelMapper.map(t,c);

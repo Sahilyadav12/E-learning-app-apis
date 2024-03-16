@@ -14,12 +14,11 @@ import lombok.Setter;
 public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer cvId;
+    private Integer videoId;
     private String  url;
-    private String material;
-    private String image;
-    private Integer lessonno;
-
+    private String thumbnail;
+    private String title;
+    private Boolean isBlock;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
