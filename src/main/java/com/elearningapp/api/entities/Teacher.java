@@ -1,10 +1,13 @@
 package com.elearningapp.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,11 +33,12 @@ public class Teacher {
     private String role;
     private String profilePicture;
 
-    @OneToMany(mappedBy = "teacher", orphanRemoval = true,cascade = CascadeType.ALL)
-    private Set<TeacherCourseMap> teacherCourseMaps = new LinkedHashSet<>();
-
     @ManyToOne
     @JoinColumn(name = "language_id")
     private Language language;
+
+
+    @OneToMany(mappedBy = "teacher", orphanRemoval = true)
+    private Set<Course> courses = new LinkedHashSet<>();
 
 }

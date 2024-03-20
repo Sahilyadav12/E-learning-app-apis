@@ -17,20 +17,22 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer courseId;
-    private String courseName;
+    private String title;
+    private String description;
     private Integer rating;
-    private boolean block;
+    private Boolean isBlock;
     private Date CreateDate;
-
-    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<TeacherCourseMap> teacherCourseMaps = new LinkedHashSet<>();
+    private String courseImg;
 
 
 
 
-
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "course", orphanRemoval = true)
     private Set<Video> videos = new LinkedHashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
     @ManyToOne
     @JoinColumn(name = "language_id")

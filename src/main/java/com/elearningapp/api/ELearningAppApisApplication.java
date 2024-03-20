@@ -12,8 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @SpringBootApplication
 public class ELearningAppApisApplication {
@@ -84,14 +83,17 @@ public class ELearningAppApisApplication {
             List<Teacher> tls = List.of(teacher0, teacher1, teacher2, teacher3, teacher4, teacher5);
             teacherRepo.saveAll(tls);
 
-            Course coreJavaTutorial = Course.builder().courseId(1).courseName("Core Java Tutorial").block(false).CreateDate(Date.valueOf(LocalDate.now())).rating(4).language(english).category(se).build();
-            TeacherCourseMap tcm = TeacherCourseMap.builder().Id(1).teacher(teacher0).course(coreJavaTutorial).build();
+            Course coreJavaTutorial = Course.builder().courseId(null).title("Core Java Tutorial")
+                    .isBlock(true).CreateDate(Date.valueOf(LocalDate.now())).rating(4)
+                    .description("this is description of the give course")
+                    .language(english).category(se).teacher(teacher0).build();
+            Course graphicDesign = Course.builder().courseId(null).title("Graphic Design Tutorial")
+                    .isBlock(true).CreateDate(Date.valueOf(LocalDate.now())).rating(4)
+                    .description("this is description of the give course")
+                    .language(english).category(se).teacher(teacher0).build();
 
-            courseRepo.save(coreJavaTutorial);
-            teacherCourseMapRepo.save(tcm);
 
-//            Course.builder().courseId(1).courseName("Core Java Tutorial").block(false).CreateDate(Date.valueOf(LocalDate.now())).rating(4).language(english).category(se).build();
-
+            courseRepo.saveAll(List.of(coreJavaTutorial,graphicDesign));
 
 
         };

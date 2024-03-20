@@ -19,7 +19,4 @@ public class Category {
     private String Category;
 
 
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
-    private Set<Course> courses = new LinkedHashSet<>();
-
 }

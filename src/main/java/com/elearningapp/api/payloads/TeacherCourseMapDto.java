@@ -10,12 +10,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TeacherCourseMapDto {
     private Long Id;
-    private Teacher teacher;
-    private Course course;
+    private String teacherFirstName;
+    private String teacherLastName;
+
+    private String courseName;
+    private String courseDescription;
+    private Date CourseCreateDate;
+
 }

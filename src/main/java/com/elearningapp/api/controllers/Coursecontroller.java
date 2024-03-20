@@ -13,17 +13,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/course")
-public class Coursecontrollers {
+public class Coursecontroller {
     private final CourseService courseService;
 
 
-    public Coursecontrollers(CourseService courseService)
+    public Coursecontroller(CourseService courseService)
     {
         this.courseService = courseService;
     }
 
     //post-create teacher
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<CourseDto> created(@Valid @RequestBody CourseDto courseDto) {
         CourseDto createDto = this.courseService.created(courseDto);
         return new ResponseEntity<>(createDto, HttpStatus.CREATED);
@@ -44,7 +44,7 @@ public class Coursecontrollers {
     }
 
     //Get-teacher get
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<CourseDto>> getAllCourse() {
         return ResponseEntity.ok(this.courseService.getallCourse());
     }

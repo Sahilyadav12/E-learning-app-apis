@@ -21,7 +21,7 @@ public class Languagecontrollers {
     }
 
     //post-create teacher
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<LanguageDto> created(@Valid @RequestBody LanguageDto languageDto) {
        LanguageDto createDto = this.languageService.created(languageDto);
         return new ResponseEntity<>(createDto, HttpStatus.CREATED);
@@ -42,7 +42,7 @@ public class Languagecontrollers {
     }
 
     //Get-teacher get
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<LanguageDto>> getAllLanguage() {
         return ResponseEntity.ok(this.languageService.getallLanguage());
     }

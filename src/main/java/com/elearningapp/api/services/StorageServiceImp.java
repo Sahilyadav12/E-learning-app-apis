@@ -64,12 +64,16 @@ public class StorageServiceImp implements StorageService {
 
     @Override
     public String uploadBase64File(String path, String base64Data) {
-//        String ext = base64Data.substring(base64Data.indexOf("/") + 1, base64Data.indexOf(";"));
-//        byte[] data = Base64.getDecoder().decode(base64Data);
+        String[] split = base64Data.split(",");
 
-        byte[] imageBytes = Base64.getDecoder().decode(base64Data.split(",")[1]);
+        int f_index=split[0].indexOf("/");
+        int l_index=split[0].indexOf(";");
+        String ext=split[0].substring(f_index+1,l_index);
 
-        var file = new File(path + File.separator + UUID.randomUUID().toString() + ".png");
+        byte[] imageBytes = Base64.getDecoder().decode(split[1]);
+
+//        var file = new File(path + File.separator + UUID.randomUUID().toString() + ".png");
+        var file = new File(path + File.separator + UUID.randomUUID().toString() + ".".concat(ext));
         try {
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(imageBytes);

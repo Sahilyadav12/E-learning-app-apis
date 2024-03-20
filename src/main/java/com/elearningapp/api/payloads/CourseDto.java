@@ -1,11 +1,9 @@
 package com.elearningapp.api.payloads;
 
 
-import com.elearningapp.api.entities.Category;
-import com.elearningapp.api.entities.Language;
-import com.elearningapp.api.entities.TeacherCourseMap;
-import com.elearningapp.api.entities.Video;
-import jakarta.persistence.OneToMany;
+import com.elearningapp.api.entities.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,18 +17,25 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseDto {    private Integer courseId;
-    private String courseName;
-    private Integer rating;
-    private String block;
-    private Date CreateDate;
+public class CourseDto {
+    private Integer courseId;
+    private String title;
+    private String description;
+//    private Integer rating;
+    private Boolean isBlock;
+    private Date createDate;
 
-    private Set<TeacherCourseMap> teacherCourseMaps = new LinkedHashSet<>();
+    private Integer languageId;
+    private String language;
 
-    private Set<LanguageDto> languages = new LinkedHashSet<>();
 
-    private Set<CategoryDto> categories = new LinkedHashSet<>();
+    private Integer categoryId;
+    private String category;
 
-    private Set<Video> videos = new LinkedHashSet<>();
+    private String courseImg;
+
+
+    private Set<VideoDto> videos = new LinkedHashSet<>();
+
 
 }

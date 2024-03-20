@@ -1,8 +1,10 @@
 package com.elearningapp.api.services;
 
+import com.elearningapp.api.entities.Teacher;
 import com.elearningapp.api.payloads.CourseDto;
 
 import java.util.List;
+import java.util.Set;
 
 public interface CourseService  {
     CourseDto created(CourseDto courseDto);
@@ -17,5 +19,7 @@ public interface CourseService  {
 
     //get get all User
     List<CourseDto> getallCourse();
+
+
 
 }

@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/category")
-public class Categorycontrollers {
+@RequestMapping("/api/categories")
+public class CategoryControllers {
     private final CategoryService categoryService;
 
 
-    public Categorycontrollers(CategoryService categoryService)
+    public CategoryControllers(CategoryService categoryService)
     {
         this.categoryService = categoryService;
     }
 
     //post-create teacher
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<CategoryDto> created(@Valid @RequestBody CategoryDto categoryDto) {
        CategoryDto createDto = this.categoryService.created(categoryDto);
         return new ResponseEntity<>(createDto, HttpStatus.CREATED);
@@ -43,7 +43,7 @@ public class Categorycontrollers {
     }
 
     //Get-teacher get
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<CategoryDto>> getAllCategory() {
         return ResponseEntity.ok(this.categoryService.getallCategory());
     }
