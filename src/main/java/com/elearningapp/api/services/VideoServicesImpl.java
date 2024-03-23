@@ -1,11 +1,15 @@
 package com.elearningapp.api.services;
 
+import com.elearningapp.api.entities.Course;
 import com.elearningapp.api.entities.Video;
 import com.elearningapp.api.exceptions.ResourceNotFoundException;
 import com.elearningapp.api.payloads.VideoDto;
+import com.elearningapp.api.repositories.CourseRepo;
 import com.elearningapp.api.repositories.VideoRepo;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,20 +19,35 @@ public class VideoServicesImpl implements VideoService {
     private final VideoRepo videoRepo;
 
     private final ModelMapper modelMapper;
+    private final StorageService storageService;
+    private  final CourseRepo courseRepo;
 
-    public VideoServicesImpl(VideoRepo videoRepo, ModelMapper modelMapper) {
+
+
+
+    public VideoServicesImpl(VideoRepo videoRepo, ModelMapper modelMapper, StorageService storageService, CourseRepo courseRepo) {
         this.videoRepo = videoRepo;
         this.modelMapper = modelMapper;
+        this.storageService = storageService;
+        this.courseRepo = courseRepo;
     }
 
-    //created
-    @Override
-    public VideoDto created(VideoDto videoDto) {
+    @Value("${project.storage}")
+    private String path;
 
-        Video video = modelMapper.map(videoDto, Video.class);
-        video.setVideoId(null);
-        Video save = videoRepo.save(video);
-        return mapToCls(save, VideoDto.class);
+
+    @Override
+    public void created(int courseId, MultipartFile thumbnail, MultipartFile video) {
+        Course course =this.courseRepo.findById(courseId).orElseThrow(()-> new ResourceNotFoundException("course", "Id", courseId));
+
+        String thumbName = storageService.uploadFile(path, thumbnail);
+        String videoName = storageService.uploadFile(path, video);
+
+
+        var videoEntity=Video.builder().videoId(null).fileName(videoName)
+                .thumbnail(thumbName).course(course)
+                .build();
+        videoRepo.save(videoEntity);
     }
 
     @Override

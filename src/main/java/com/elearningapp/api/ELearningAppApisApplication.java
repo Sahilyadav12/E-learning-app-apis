@@ -45,7 +45,7 @@ public class ELearningAppApisApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*");
+                registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
             }
         };
 
@@ -73,23 +73,23 @@ public class ELearningAppApisApplication {
             List cls = List.of(uiUx, se, gd, fh, dm, ba);
             categoryRepo.saveAll(cls);
 
-            Teacher teacher0 = Teacher.builder().teacherId(1).dob(Date.valueOf("1996-02-14")).doj(Date.valueOf(LocalDate.now())).isBlock(false).Email("test@gmail.com").firstName("Sahil").lastName("Yaadav").role("TEACHER").experience(5).password(null).profilePicture(null).qualification("B-Tech").language(english).build();
-            Teacher teacher1 = Teacher.builder().teacherId(2).dob(Date.valueOf("1996-02-14")).doj(Date.valueOf(LocalDate.now())).isBlock(false).Email("test1@gmail.com").firstName("Sahil").lastName("Yaadav").role("TEACHER").experience(5).password(null).profilePicture(null).qualification("B-Tech").language(hindi).build();
-            Teacher teacher2 = Teacher.builder().teacherId(3).dob(Date.valueOf("1990-10-20")).doj(Date.valueOf(LocalDate.now())).isBlock(false).Email("test2@gmail.com").firstName("John").lastName("Doe").role("TEACHER").experience(7).password(null).profilePicture(null).qualification("PhD").language(english).build();
-            Teacher teacher3 = Teacher.builder().teacherId(4).dob(Date.valueOf("1985-05-08")).doj(Date.valueOf(LocalDate.now())).isBlock(true).Email("test3@gmail.com").firstName("Alice").lastName("Smith").role("TEACHER").experience(3).password(null).profilePicture(null).qualification("M.Sc").language(bengali).build();
-            Teacher teacher4 = Teacher.builder().teacherId(5).dob(Date.valueOf("1992-12-31")).doj(Date.valueOf(LocalDate.now())).isBlock(false).Email("test4@gmail.com").firstName("Emily").lastName("Johnson").role("TEACHER").experience(8).password(null).profilePicture(null).qualification("B.A").language(english).build();
-            Teacher teacher5 = Teacher.builder().teacherId(6).dob(Date.valueOf("1988-03-25")).doj(Date.valueOf(LocalDate.now())).isBlock(true).Email("test5@gmail.com").firstName("Michael").lastName("Brown").role("TEACHER").experience(6).password(null).profilePicture(null).qualification("B.Sc").language(hindi).build();
+            Teacher teacher0 = Teacher.builder().teacherId(1).dob(Date.valueOf("1996-02-14")).doj(Date.valueOf(LocalDate.now())).isBlock(false).Email("test@gmail.com").firstName("Sahil").lastName("Yaadav").role("TEACHER").experience(5).password(null).profilePicture(null).qualification("B-Tech").profilePicture("default.avif").language(english).build();
+            Teacher teacher1 = Teacher.builder().teacherId(2).dob(Date.valueOf("1996-02-14")).doj(Date.valueOf(LocalDate.now())).isBlock(false).Email("test1@gmail.com").firstName("Sahil").lastName("Yaadav").role("TEACHER").experience(5).password(null).profilePicture(null).qualification("B-Tech").profilePicture("default.avif").language(hindi).build();
+            Teacher teacher2 = Teacher.builder().teacherId(3).dob(Date.valueOf("1990-10-20")).doj(Date.valueOf(LocalDate.now())).isBlock(false).Email("test2@gmail.com").firstName("John").lastName("Doe").role("TEACHER").experience(7).password(null).profilePicture(null).qualification("PhD").profilePicture("default.avif").language(english).build();
+            Teacher teacher3 = Teacher.builder().teacherId(4).dob(Date.valueOf("1985-05-08")).doj(Date.valueOf(LocalDate.now())).isBlock(true).Email("test3@gmail.com").firstName("Alice").lastName("Smith").role("TEACHER").experience(3).password(null).profilePicture(null).qualification("M.Sc").profilePicture("default.avif").language(bengali).build();
+            Teacher teacher4 = Teacher.builder().teacherId(5).dob(Date.valueOf("1992-12-31")).doj(Date.valueOf(LocalDate.now())).isBlock(false).Email("test4@gmail.com").firstName("Emily").lastName("Johnson").role("TEACHER").experience(8).password(null).profilePicture(null).qualification("B.A").profilePicture("default.avif").language(english).build();
+            Teacher teacher5 = Teacher.builder().teacherId(6).dob(Date.valueOf("1988-03-25")).doj(Date.valueOf(LocalDate.now())).isBlock(true).Email("test5@gmail.com").firstName("Michael").lastName("Brown").role("TEACHER").experience(6).password(null).profilePicture(null).qualification("B.Sc").profilePicture("default.avif").language(hindi).build();
 
             List<Teacher> tls = List.of(teacher0, teacher1, teacher2, teacher3, teacher4, teacher5);
             teacherRepo.saveAll(tls);
 
             Course coreJavaTutorial = Course.builder().courseId(null).title("Core Java Tutorial")
                     .isBlock(true).CreateDate(Date.valueOf(LocalDate.now())).rating(4)
-                    .description("this is description of the give course")
+                    .description("this is description of the give course").courseImg("courseDefault.webp")
                     .language(english).category(se).teacher(teacher0).build();
             Course graphicDesign = Course.builder().courseId(null).title("Graphic Design Tutorial")
                     .isBlock(true).CreateDate(Date.valueOf(LocalDate.now())).rating(4)
-                    .description("this is description of the give course")
+                    .description("this is description of the give course").courseImg("courseDefault.webp")
                     .language(english).category(se).teacher(teacher0).build();
 
 

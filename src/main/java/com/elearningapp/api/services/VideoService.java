@@ -1,11 +1,12 @@
 package com.elearningapp.api.services;
 
 import com.elearningapp.api.payloads.VideoDto;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface VideoService {
-    VideoDto created(VideoDto videoDto);
+//    VideoDto created(VideoDto videoDto);
 
     VideoDto update(VideoDto videoDto, Integer courseId);
 
@@ -20,4 +21,5 @@ public interface VideoService {
     List< VideoDto> getallVideo();
 
 
+    void created(int courseId, MultipartFile thumbnail, MultipartFile video);
 }

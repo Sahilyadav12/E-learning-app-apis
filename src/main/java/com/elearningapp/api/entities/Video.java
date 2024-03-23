@@ -1,21 +1,19 @@
 package com.elearningapp.api.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer videoId;
-    private String  url;
+    private String  fileName;
     private String thumbnail;
     private String title;
     private Boolean isBlock;

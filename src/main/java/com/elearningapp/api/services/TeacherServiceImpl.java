@@ -67,14 +67,15 @@ public class TeacherServiceImpl implements TeacherService {
                 orElseThrow(() -> new ResourceNotFoundException("Teacher", "teacher", teacherId));
 
         Teacher update = modelMapper.map(teacherDto, Teacher.class);
-        update.setTeacherId(teacherId);
 
-        if (!teacherDto.getProfilePicture().isEmpty()) {
+        if (!teacherDto.getProfilePicture().isEmpty() && teacherDto.getProfilePicture().contains("base64")) {
             String fileName = storageService.uploadBase64File(path, teacherDto.getProfilePicture());
             update.setProfilePicture(fileName);
         }
         Language language = languageRepo.findById(teacherDto.getLanguageId()).orElseThrow(() -> new ResourceNotFoundException("language", "language", teacherDto.getLanguageId()));
+        update.setTeacherId(teacherId);
         update.setLanguage(language);
+        update.setCourses(teacher.getCourses());
 
 
         return modelMapper.map(teacherRepo.save(update), TeacherDto.class);
@@ -122,12 +123,12 @@ public class TeacherServiceImpl implements TeacherService {
 
         course.setCategory(category);
         course.setLanguage(language);
-
-        if (!courseDto.getCourseImg().isEmpty()) {
-            String imgName = storageService.uploadBase64File(path, courseDto.getCourseImg());
-            course.setCourseImg(imgName);
+        String imgName = "courseDefault.webp";
+        if (!courseDto.getCourseImg().isEmpty() && courseDto.getCourseImg() != null) {
+            imgName = storageService.uploadBase64File(path, courseDto.getCourseImg());
 
         }
+        course.setCourseImg(imgName);
 
 
         return modelMapper.map(courseRepo.save(course), CourseDto.class);
