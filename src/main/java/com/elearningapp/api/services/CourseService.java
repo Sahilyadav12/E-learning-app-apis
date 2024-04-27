@@ -16,6 +16,7 @@ public interface CourseService  {
     //getStudentsbyId
 
     CourseDto getCourseById(Integer courseId);
+     List<CourseDto> getCourseByCat(Integer CatId);
 
     //get get all User
     List<CourseDto> getallCourse();

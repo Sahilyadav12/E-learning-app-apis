@@ -64,7 +64,10 @@ public class CourseServiceImpl implements CourseService {
         return courseRepo.findAll().stream().map((element) -> modelMapper.map(element, CourseDto.class)).collect(Collectors.toList());
     }
 
-
+    @Override
+    public List<CourseDto> getCourseByCat(Integer CatId) {
+        return courseRepo.findByCategory_CategoryId(CatId).stream().map((element) -> modelMapper.map(element, CourseDto.class)).collect(Collectors.toList());
+    }
 
     private <T,C> C mapToCls(T t, Class<C> c){
         return modelMapper.map(t,c);

@@ -63,14 +63,20 @@ public class ELearningAppApisApplication {
             ls.addAll(List.of(hindi, english, bengali));
             languageRepo.saveAll(ls);
 
-            Category uiUx = Category.builder().categoryId(1).Category("UI/UX Design Courses").build();
-            Category se = Category.builder().categoryId(2).Category("Software Engineering").build();
-            Category gd = Category.builder().categoryId(3).Category("Graphic Design").build();
-            Category fh = Category.builder().categoryId(4).Category("Health & Fitness").build();
-            Category dm = Category.builder().categoryId(5).Category("Digital Marketing").build();
-            Category ba = Category.builder().categoryId(6).Category("Business Administration").build();
+            Category uiUx = Category.builder().Category("UI/UX Design Courses").build();
+            Category ad = Category.builder().Category("Art & Design").build();
+            Category ce = Category.builder().Category("Computer Science").build();
+            Category ha = Category.builder().Category("History & Archeologic").build();
+            Category se = Category.builder().Category("Software Engineering").build();
+            Category fh = Category.builder().Category("Information Software").build();
+            Category hf = Category.builder().Category("Health & Fitness").build();
+            Category ma = Category.builder().Category("Marketing").build();
+            Category gd = Category.builder().Category("Graphic Design").build();
+            Category mu = Category.builder().Category("Music").build();
+            Category ba = Category.builder().Category("Business Administration").build();
+            Category wm = Category.builder().Category("Web Management").build();
 
-            List cls = List.of(uiUx, se, gd, fh, dm, ba);
+            List cls = List.of(uiUx, ad,ce,ha,se,fh,hf,ma,gd);
             categoryRepo.saveAll(cls);
 
             Teacher teacher0 = Teacher.builder().teacherId(1).dob(Date.valueOf("1996-02-14")).doj(Date.valueOf(LocalDate.now())).isBlock(false).Email("test@gmail.com").firstName("Sahil").lastName("Yaadav").role("TEACHER").experience(5).password(null).profilePicture(null).qualification("B-Tech").profilePicture("default.avif").language(english).build();

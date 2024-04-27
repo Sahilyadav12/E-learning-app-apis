@@ -48,6 +48,10 @@ public class Coursecontroller {
     public ResponseEntity<List<CourseDto>> getAllCourse() {
         return ResponseEntity.ok(this.courseService.getallCourse());
     }
+    @GetMapping("/cat/{catId}")
+    public ResponseEntity<List<CourseDto>> getAllCourseByCateID(@PathVariable Integer catId) {
+        return ResponseEntity.ok(this.courseService.getCourseByCat(catId));
+    }
 
     //Get-user get
     @GetMapping("/{courseId}")
